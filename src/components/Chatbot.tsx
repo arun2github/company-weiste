@@ -41,7 +41,7 @@ const Chatbot = () => {
         {
           id: crypto.randomUUID(),
           role: 'assistant',
-          content: "Hello! I&apos;m WhaleCore&apos;s AI assistant. How can I help you today?",
+          content: "Hello! I am WhaleCore  AI assistant. How can I help you today?",
           timestamp: new Date(),
         }
       ]);

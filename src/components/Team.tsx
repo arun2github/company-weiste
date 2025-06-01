@@ -68,7 +68,7 @@ const teamMembers = [
   {
     id: 3,
     name: 'Afroj Alam',
-    role: 'Senior Laravel Developer',
+    role: 'Senior Backend Developer',
     image: '/images/afroj.jpeg',
     bio: 'Experienced backend developer specializing in Laravel, building robust and efficient server-side solutions.',
     social: {
