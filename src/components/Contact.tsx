@@ -19,11 +19,6 @@ const INPUT_BG_CONTACT = '#FFFFFF';
 const SUCCESS_MESSAGE_COLOR = '#004D40'; 
 const ERROR_MESSAGE_COLOR = '#B91C1C';
 
-// New text colors for the dark ContactInfo panel
-const TEXT_ON_DARK_PRIMARY = '#FFFFFF';
-const TEXT_ON_DARK_SECONDARY = '#E0E0E0'; // Lighter gray for secondary text on dark
-const ICON_ON_DARK_COLOR = '#FFFFFF';
-
 const ContactInfo = () => {
   const infoItems = [
     {
