@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Target, Transition } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export function AnimationProvider({ 
@@ -11,9 +11,9 @@ export function AnimationProvider({
   className = "",
 }: {
   children: React.ReactNode;
-  initial?: Record<string, any>;
-  animate?: Record<string, any>;
-  transition?: Record<string, any>;
+  initial?: Target;
+  animate?: Target;
+  transition?: Transition;
   className?: string;
 }) {
   const [isMounted, setIsMounted] = useState(false);

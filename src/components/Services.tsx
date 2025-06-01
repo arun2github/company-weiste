@@ -9,138 +9,151 @@ import {
   MagnifyingGlassIcon,
   ShoppingBagIcon,
   RocketLaunchIcon,
-  CursorArrowRaysIcon
+  CursorArrowRaysIcon,
+  CheckBadgeIcon
 } from '@heroicons/react/24/outline';
-import { AnimationProvider } from './AnimationProvider';
+
+// Re-using theme colors (ideally, import from a central theme file)
+const BG_PRIMARY_SERVICES = '#F9F9F9';
+const TEXT_PRIMARY_SERVICES = '#222222';
+const TEXT_SECONDARY_SERVICES = '#555555';
+const ACCENT_ELEGANT_SERVICES = '#004D40'; // Deep Teal
+const CARD_BORDER_SERVICES = '#E0E0E0';
 
 const services = [
   {
     title: 'Web Development',
-    description: 'Custom web applications built with cutting-edge technologies to meet your specific business needs.',
+    description: 'Crafting responsive, high-performance web applications with modern architectures and scalable solutions that drive user engagement.',
     icon: ComputerDesktopIcon,
-    gradient: 'from-[#2563eb] to-[#4f46e5]',
-    features: ['React/Next.js/Flutter', 'Node.js/Express/Laravel', 'Database Design', 'API Integration'],
+    features: ['React/Next.js', 'Node.js/Express', 'API Design & Integration', 'Database Architecture'],
   },
   {
-    title: 'Mobile Development',
-    description: 'Native and cross-platform mobile apps that deliver exceptional user experiences.',
+    title: 'Mobile App Development',
+    description: 'Building intuitive and engaging native or cross-platform mobile apps that deliver seamless user experiences on iOS and Android.',
     icon: DevicePhoneMobileIcon,
-    gradient: 'from-[#7c3aed] to-[#6366f1]',
-    features: ['iOS/Android',  'Flutter', 'App Store Deploy'],
+    features: ['iOS (Swift/ObjC)', 'Android (Kotlin/Java)', 'Flutter/React Native', 'App Store Deployment'],
   },
   {
-    title: 'Digital Marketing',
-    description: 'Strategic digital marketing solutions to boost your online presence and drive growth.',
+    title: 'Digital Strategy & Marketing',
+    description: 'Developing data-driven digital marketing strategies to enhance your online presence, reach target audiences, and achieve growth.',
     icon: MegaphoneIcon,
-    gradient: 'from-[#0ea5e9] to-[#3b82f6]',
-    features: ['Social Media', 'Content Strategy', 'Email Marketing', 'Analytics'],
+    features: ['SEO & SEM', 'Content Marketing', 'Social Media Management', 'Analytics & Reporting'],
   },
   {
-    title: 'WordPress Development',
-    description: 'Custom WordPress solutions, themes, and plugins for your content management needs.',
+    title: 'CMS & WordPress Solutions',
+    description: 'Custom WordPress themes, plugin development, and CMS solutions tailored for optimal content management and performance.',
     icon: CodeBracketIcon,
-    gradient: 'from-[#2563eb] to-[#4f46e5]',
-    features: ['Custom Themes', 'Plugin Development', 'WooCommerce', 'Security'],
+    features: ['Custom Theme Design', 'Plugin Development', 'WooCommerce Integration', 'Performance Optimization'],
   },
   {
-    title: 'Quality Assurance',
-    description: 'Comprehensive testing and QA services to ensure your software meets the highest standards.',
+    title: 'Quality Assurance & Testing',
+    description: 'Ensuring software reliability and performance through comprehensive QA, including automated and manual testing methodologies.',
     icon: CursorArrowRaysIcon,
-    gradient: 'from-[#7c3aed] to-[#6366f1]',
-    features: ['Automated Testing', 'Manual Testing', 'Performance', 'Security Audit'],
+    features: ['Automated Test Suites', 'Manual & Exploratory Testing', 'Performance & Load Testing', 'Security Audits'],
   },
   {
-    title: 'SEO Optimization',
-    description: 'Optimize your website for search engines to improve your online visibility and drive more traffic.',
+    title: 'SEO Optimization Services',
+    description: 'Improving your website search engine ranking and online visibility through technical SEO, content strategy, and ethical link building.',
     icon: MagnifyingGlassIcon,
-    gradient: 'from-[#0ea5e9] to-[#3b82f6]',
-    features: ['Keyword Research', 'On-Page SEO', 'Technical SEO', 'Link Building'],
+    features: ['Keyword Strategy', 'On-Page & Off-Page SEO', 'Technical SEO Audits', 'Local SEO'],
   },
   {
-    title: 'Advertising',
-    description: 'Advertising services to help your business grow and reach your target audience.',
+    title: 'Digital Advertising Campaigns',
+    description: 'Managing targeted digital advertising campaigns across various platforms to maximize ROI and connect with your ideal customers.',
     icon: RocketLaunchIcon,
-    gradient: 'from-[#2563eb] to-[#4f46e5]',
-    features: ['PPC Campaigns', 'Social Ads', 'Display Ads', 'Analytics'],
+    features: ['PPC (Google Ads, Bing)', 'Social Media Advertising', 'Display & Programmatic Ads', 'Campaign Analytics'],
   },
   {
-    title: 'Shopify Development',
-    description: 'Custom Shopify solutions, themes, and plugins for your content management needs.',
+    title: 'E-commerce Platform Development',
+    description: 'Building robust and scalable e-commerce solutions, from custom platforms to Shopify and WooCommerce store development.',
     icon: ShoppingBagIcon,
-    gradient: 'from-[#7c3aed] to-[#6366f1]',
-    features: ['Custom Themes', 'App Development', 'Store Setup', 'Optimization'],
+    features: ['Shopify Development', 'WooCommerce Solutions', 'Custom E-commerce Builds', 'Payment Gateway Integration'],
   },
 ];
 
+// AnimationProvider might need to be adjusted if its styles conflict, or not used if direct Framer Motion is preferred.
+// For now, assuming AnimationProvider handles basic staggering well.
+
 const ServiceCard = ({ service, index }: { service: typeof services[0]; index: number }) => {
+  const IconComponent = service.icon;
   return (
-    <AnimationProvider
-      initial={{ opacity: 0, y: 20 }}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative group h-full"
+      transition={{ type: 'spring', stiffness: 80, damping: 15, delay: index * 0.1 }}
+      className="h-full"
     >
       <motion.div
-        whileHover={{ scale: 1.02 }}
-        className="w-full h-full"
+        whileHover={{ 
+          scale: 1.03,
+          boxShadow: '0px 10px 25px -10px rgba(0,0,0,0.1)', // More pronounced shadow on hover
+        }}
+        className="flex flex-col h-full bg-white p-8 rounded-xl shadow-md transition-all duration-300 ease-out group"
+        style={{ borderColor: CARD_BORDER_SERVICES, borderWidth: '1px'}}
       >
-        <div className="service-card h-full flex flex-col">
-          {/* Icon Section */}
-          <div className="relative mb-6">
-            <div className={`w-16 h-16 rounded-xl flex items-center justify-center bg-gradient-to-r ${service.gradient} shadow-lg transform -rotate-6 group-hover:rotate-0 transition-transform duration-300`}>
-              <service.icon className="w-8 h-8 text-white" />
-            </div>
-            <div className={`absolute top-0 left-0 w-16 h-16 rounded-xl bg-gradient-to-r ${service.gradient} opacity-20 blur-xl`} />
-          </div>
+        <div className="mb-6">
+          <IconComponent 
+            className="w-10 h-10 transition-colors duration-300 ease-out group-hover:stroke-2"
+            style={{ color: ACCENT_ELEGANT_SERVICES }} 
+          />
+        </div>
 
-          {/* Content Section */}
-          <div className="flex-grow">
-            <h3 className="text-xl font-semibold text-white/90 mb-3">
-              {service.title}
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              {service.description}
-            </p>
+        <h3 
+          className="text-xl font-semibold mb-3 transition-colors duration-300 ease-out"
+          style={{ color: TEXT_PRIMARY_SERVICES }}
+        >
+          {service.title}
+        </h3>
+        <p 
+          className="text-sm leading-relaxed mb-6 flex-grow"
+          style={{ color: TEXT_SECONDARY_SERVICES }}
+        >
+          {service.description}
+        </p>
 
-            {/* Features List */}
-            <div className="space-y-2.5">
-              {service.features.map((feature, i) => (
-                <div key={i} className="flex items-center space-x-2.5">
-                  <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${service.gradient}`} />
-                  <span className="text-sm text-gray-300">{feature}</span>
-                </div>
-              ))}
+        <div className="space-y-2.5 pt-auto">
+          {service.features.map((feature, i) => (
+            <div key={i} className="flex items-center space-x-2.5">
+              <CheckBadgeIcon 
+                className="w-5 h-5 flex-shrink-0"
+                style={{color: ACCENT_ELEGANT_SERVICES, opacity: 0.8}}
+              />
+              <span className="text-xs" style={{ color: TEXT_SECONDARY_SERVICES }}>{feature}</span>
             </div>
-          </div>
+          ))}
         </div>
       </motion.div>
-    </AnimationProvider>
+    </motion.div>
   );
 };
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.15]" />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <AnimationProvider className="mb-4">
-            <h2 className="text-4xl sm:text-5xl font-bold gradient-text mb-6">
-              Our Services
-            </h2>
-            <div className="section-underline" />
-          </AnimationProvider>
-          <AnimationProvider
-            transition={{ duration: 0.5, delay: 0.2 }}
+    <section id="services" className="py-24 md:py-32" style={{ backgroundColor: BG_PRIMARY_SERVICES }}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div 
+          className="text-center mb-16 md:mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <h2 
+            className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-4"
+            style={{ color: TEXT_PRIMARY_SERVICES }}
           >
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto mt-6">
-              We offer a comprehensive range of digital services to help your business thrive in the modern world.
-            </p>
-          </AnimationProvider>
-        </div>
+            Our Comprehensive Services
+          </h2>
+          <p 
+            className="text-lg text-gray-600 max-w-2xl mx-auto mt-4"
+            style={{ color: TEXT_SECONDARY_SERVICES }}
+          >
+            We offer a tailored suite of expert services designed to elevate your digital presence and empower your business for sustained growth and innovation.
+          </p>
+           <div className="mt-6 h-1 w-24 mx-auto rounded-full" style={{backgroundColor: ACCENT_ELEGANT_SERVICES, opacity: 0.5}} />
+        </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <ServiceCard key={service.title} service={service} index={index} />
           ))}

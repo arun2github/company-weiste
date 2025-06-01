@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+// import Image from 'next/image'; // Commented out unused import
 import { AnimationProvider, AnimatedList } from './AnimationProvider';
 
 const projects = [
@@ -73,7 +73,7 @@ const Portfolio = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Explore our latest projects and see how we've helped businesses achieve their goals.
+              Explore our latest projects and see how we&apos;ve helped businesses achieve their goals.
             </p>
           </AnimationProvider>
         </div>

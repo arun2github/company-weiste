@@ -1,210 +1,175 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { AnimationProvider, AnimatedList } from './AnimationProvider';
 import { StarIcon } from '@heroicons/react/24/solid';
+import React from 'react';
+import Image from 'next/image';
 
-const clients = [
-  {
+// --- Theme Colors (Adopted from other sections for consistency) ---
+const BG_PRIMARY_CLIENTS = '#F9F9F9';
+const TEXT_PRIMARY_CLIENTS = '#222222';
+const TEXT_SECONDARY_CLIENTS = '#555555';
+const ACCENT_ELEGANT_CLIENTS = '#004D40'; // Deep Teal
+const CARD_BORDER_CLIENTS = '#E0E0E0';
+
+// Updated featured client
+const featuredClient = {
+  id: 1,
+  name: 'Tura Municipal Board',
+  logo: '/images/turaLogo.jpeg', // Corrected logo path
+  industry: 'Meghalaya Government',
+  testimonial: {
     id: 1,
-    name: 'TechCorp Solutions',
-    logo: '/clients/techcorp.png',
-    industry: 'Technology',
-  },
-  {
-    id: 2,
-    name: 'Global Finance',
-    logo: '/clients/globalfinance.png',
-    industry: 'Finance',
-  },
-  {
-    id: 3,
-    name: 'HealthCare Plus',
-    logo: '/clients/healthcare.png',
-    industry: 'Healthcare',
-  },
-  {
-    id: 4,
-    name: 'EduTech Systems',
-    logo: '/clients/edutech.png',
-    industry: 'Education',
-  },
-  {
-    id: 5,
-    name: 'Retail Connect',
-    logo: '/clients/retail.png',
-    industry: 'Retail',
-  },
-  {
-    id: 6,
-    name: 'Media Masters',
-    logo: '/clients/media.png',
-    industry: 'Media',
-  },
+    name: 'A. Momin', // Placeholder, please update
+    role: 'Chairperson, Tura Municipal Board', // Placeholder, please update
+    content: 'Their dedication and innovative approach greatly benefited our community initiatives. A highly recommended partner for digital transformation.', // Placeholder, please update
+    rating: 5,
+    image: '/testimonials/tura-official.jpg', // Placeholder, please update
+  }
+};
+
+// Qualitative stats or team-focused metrics
+const stats = [
+  { label: 'Dedicated Professionals', value: '5+' }, // Assuming 5 team members based on Team.tsx
+  { label: 'Years of Combined Experience', value: '10+' }, // Example, adjust as needed
+  { label: 'Focus on Innovation', value: '100%' },
+  { label: 'Client-Centric Approach', value: 'Core' },
 ];
 
-const testimonials = [
-  {
-    id: 1,
-    name: 'Sarah Johnson',
-    role: 'CTO at TechCorp Solutions',
-    content: 'Working with this team has been an absolute pleasure. Their technical expertise and commitment to quality are unmatched.',
-    rating: 5,
-    image: '/testimonials/sarah.jpg',
-    gradient: 'from-[#2563eb] to-[#4f46e5]',
-  },
-  {
-    id: 2,
-    name: 'Michael Chen',
-    role: 'Product Manager at Global Finance',
-    content: 'They delivered our project on time and exceeded our expectations. Their attention to detail and innovative solutions made all the difference.',
-    rating: 5,
-    image: '/testimonials/michael.jpg',
-    gradient: 'from-[#7c3aed] to-[#6366f1]',
-  },
-  {
-    id: 3,
-    name: 'Emily Rodriguez',
-    role: 'Director of Innovation at HealthCare Plus',
-    content: 'The team understanding of our industry-specific needs and their ability to deliver cutting-edge solutions has been impressive.',
-    rating: 5,
-    image: '/testimonials/emily.jpg',
-    gradient: 'from-[#0ea5e9] to-[#3b82f6]',
-  },
-];
-
-const ClientLogo = ({ client }: { client: typeof clients[0] }) => (
-  <div className="p-6 bg-white/[0.02] backdrop-blur-lg rounded-lg border border-white/[0.05] flex items-center justify-center h-32 transition-all duration-300 hover:bg-white/[0.05]">
-    <div className="text-center">
-      <div className="text-gray-500 mb-2">[Logo]</div>
-      <p className="text-sm font-medium text-white/80">{client.name}</p>
-      <p className="text-xs text-gray-400">{client.industry}</p>
+const FeaturedClientDisplay = ({ client }: { client: typeof featuredClient }) => (
+  <div className="w-full max-w-md mx-auto bg-white p-8 rounded-xl shadow-lg border" style={{borderColor: CARD_BORDER_CLIENTS}}>
+    <div className="flex flex-col items-center text-center">
+      <div 
+        className="w-32 h-32 md:w-36 md:h-36 bg-gray-100 rounded-full flex items-center justify-center mb-6 overflow-hidden relative ring-2 ring-offset-2"
+        style={{
+          borderColor: CARD_BORDER_CLIENTS, 
+          // @ts-expect-error TS might complain about custom CSS var, but it works for Tailwind
+          '--tw-ring-color': ACCENT_ELEGANT_CLIENTS + '33' 
+        }}
+      >
+        {client.logo ? (
+          <Image 
+            src={client.logo} 
+            alt={`${client.name} Logo`} 
+            width={144} 
+            height={144}
+            className="object-contain"
+          />
+        ) : (
+          <span className="text-gray-500">LOGO</span>
+        )}
+      </div>
+      <h3 className="text-2xl font-semibold mb-1" style={{color: TEXT_PRIMARY_CLIENTS}}>{client.name}</h3>
+      <p className="text-sm mb-4" style={{color: ACCENT_ELEGANT_CLIENTS}}>{client.industry}</p>
+      <p className="text-base" style={{color: TEXT_SECONDARY_CLIENTS}}>
+        We are proud to have partnered with {client.name} and are actively engaged in exciting new collaborations. Stay tuned for more success stories.
+      </p>
     </div>
   </div>
 );
 
-const TestimonialCard = ({ testimonial, index }: { testimonial: typeof testimonials[0]; index: number }) => (
-  <AnimationProvider
+const TestimonialCard = ({ testimonial }: { testimonial: typeof featuredClient.testimonial }) => (
+  <motion.div
     initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="relative group"
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5, delay: 0.2 }}
+    className="w-full max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg border relative" 
+    style={{borderColor: CARD_BORDER_CLIENTS}}
   >
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      className="w-full"
-    >
-      <div 
-        className={`absolute inset-0 bg-gradient-to-r rounded-xl blur-lg opacity-30 group-hover:opacity-40 transition-opacity duration-300 ${testimonial.gradient}`}
-      />
-      <div className="relative bg-white/[0.02] backdrop-blur-lg rounded-xl p-6 border border-white/[0.05] overflow-hidden">
-        <div className="flex flex-col">
-          <div className="flex items-center mb-4">
-            <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gray-800 border border-gray-700 mr-4">
-              <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-                [Photo]
-              </div>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold text-white/90">{testimonial.name}</h4>
-              <p className={`text-sm bg-gradient-to-r ${testimonial.gradient} text-transparent bg-clip-text`}>
-                {testimonial.role}
-              </p>
-            </div>
-          </div>
-          <div className="mb-4">
-            <div className="flex gap-1">
-              {[...Array(testimonial.rating)].map((_, i) => (
-                <StarIcon key={i} className="w-5 h-5 text-amber-400" />
-              ))}
-            </div>
-          </div>
-          <p className="text-gray-400 italic text-sm">{testimonial.content}</p>
+    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-gray-100 border-2 flex items-center justify-center overflow-hidden" style={{borderColor: ACCENT_ELEGANT_CLIENTS}}>
+        {/* <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover" /> */}
+        <div className="text-xs text-gray-500">Photo</div>
+    </div>
+    <div className="flex flex-col text-center pt-8">
+      <div className="mb-3">
+        <div className="flex justify-center gap-1">
+          {[...Array(testimonial.rating)].map((_, i) => (
+            <StarIcon key={i} className="w-5 h-5" style={{color: '#FDBF2D'}} /> // Amber color for stars
+          ))}
         </div>
       </div>
-    </motion.div>
-  </AnimationProvider>
+      <p className="italic text-base md:text-lg mb-6" style={{color: TEXT_SECONDARY_CLIENTS}}>
+        &quot;{testimonial.content}&quot;
+      </p>
+      <h4 className="text-lg font-semibold" style={{color: TEXT_PRIMARY_CLIENTS}}>{testimonial.name}</h4>
+      <p className="text-sm" style={{color: ACCENT_ELEGANT_CLIENTS}}>{testimonial.role}</p>
+    </div>
+  </motion.div>
 );
 
-const Stats = () => (
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-    {[
-      { label: 'Happy Clients', value: '100+' },
-      { label: 'Projects Completed', value: '250+' },
-      { label: 'Years Experience', value: '10+' },
-      { label: 'Awards Won', value: '15+' },
-    ].map((stat, index) => (
-      <AnimationProvider
+const StatsDisplay = () => (
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8 mb-16 md:mb-24">
+    {stats.map((stat, index) => (
+      <motion.div
         key={stat.label}
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
+        className="text-center p-4 bg-white rounded-lg shadow border" 
+        style={{borderColor: CARD_BORDER_CLIENTS}}
       >
-        <div className="text-center">
-          <h3 className="text-3xl font-bold text-white mb-2">{stat.value}</h3>
-          <p className="text-gray-400">{stat.label}</p>
-        </div>
-      </AnimationProvider>
+        <h3 className="text-2xl md:text-3xl font-semibold mb-1" style={{color: ACCENT_ELEGANT_CLIENTS}}>{stat.value}</h3>
+        <p className="text-xs md:text-sm" style={{color: TEXT_SECONDARY_CLIENTS}}>{stat.label}</p>
+      </motion.div>
     ))}
   </div>
 );
 
 const Clients = () => {
   return (
-    <section id="clients" className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.15]" />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <AnimationProvider className="mb-4">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-              Our Clients
-            </h2>
-            <div className="h-1 w-24 mx-auto rounded-full bg-gradient-to-r from-[#2563eb] to-[#4f46e5]" />
-          </AnimationProvider>
-          <AnimationProvider
-            transition={{ duration: 0.5, delay: 0.2 }}
+    <section id="clients" className="py-24 md:py-32" style={{backgroundColor: BG_PRIMARY_CLIENTS}}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div 
+          className="text-center mb-16 md:mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <h2 
+            className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-4"
+            style={{ color: TEXT_PRIMARY_CLIENTS }}
           >
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto mt-6">
-              Trusted by leading companies across various industries
-            </p>
-          </AnimationProvider>
-        </div>
+            Our Partnerships & Collaborations
+          </h2>
+          <p 
+            className="text-lg max-w-2xl mx-auto mt-4"
+            style={{ color: TEXT_SECONDARY_CLIENTS }}
+          >
+            Building strong relationships to achieve mutual success and drive innovation.
+          </p>
+          <div className="mt-6 h-1 w-24 mx-auto rounded-full" style={{backgroundColor: ACCENT_ELEGANT_CLIENTS, opacity: 0.5}} />
+        </motion.div>
 
-        <Stats />
+        {/* Stats Section */}
+        <StatsDisplay />
+
+        {/* Featured Client Section */}
+        <div className="mb-16 md:mb-24">
+          <FeaturedClientDisplay client={featuredClient} />
+        </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-20">
-          {clients.map((client) => (
-            <motion.div
-              key={client.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <ClientLogo client={client} />
-            </motion.div>
-          ))}
-        </div>
+        {/* Testimonial Section */}
+        <motion.div 
+          className="text-center mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut", delay:0.1}}
+        >
+          <h3 
+            className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight mb-4"
+            style={{ color: TEXT_PRIMARY_CLIENTS }}
+          >
+            From Our Partner
+          </h3>
+           <div className="mt-5 h-0.5 w-20 mx-auto rounded-full" style={{backgroundColor: ACCENT_ELEGANT_CLIENTS, opacity: 0.4}} />
+        </motion.div>
 
-        <div className="text-center mb-12">
-          <AnimationProvider className="mb-4">
-            <h3 className="text-3xl font-bold text-white mb-6">
-              What Our Clients Say
-            </h3>
-            <div className="h-1 w-24 mx-auto rounded-full bg-gradient-to-r from-[#2563eb] to-[#4f46e5]" />
-          </AnimationProvider>
-        </div>
+        <TestimonialCard testimonial={featuredClient.testimonial} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <TestimonialCard 
-              key={testimonial.id} 
-              testimonial={testimonial} 
-              index={index} 
-            />
-          ))}
-        </div>
       </div>
     </section>
   );
