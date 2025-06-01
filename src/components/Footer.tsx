@@ -151,13 +151,18 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div 
-          className="border-t pt-8 mt-8 flex flex-col sm:flex-row justify-between items-center"
+          className="border-t pt-8 mt-8 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left"
           style={{ borderColor: BORDER_FOOTER }}
         >
-          <p style={{ color: TEXT_SECONDARY_FOOTER }}>
-            &copy; {currentYear} WhaleCore Innovations. All rights reserved.
-          </p>
-          <div className="flex space-x-6 mt-4 sm:mt-0">
+          <div className="mb-4 sm:mb-0">
+            <p style={{ color: TEXT_SECONDARY_FOOTER }} className="mb-1">
+              &copy; {currentYear} WhaleCore Innovations. All rights reserved.
+            </p>
+            <p style={{ color: TEXT_SECONDARY_FOOTER }}>
+              Crafted with care by <a href="https://aruntechfolio.netlify.app/" target="_blank" rel="noopener noreferrer" className="hover:underline font-semibold" style={{color: ACCENT_ELEGANT_FOOTER}}>Arun Kumar</a>
+            </p>
+          </div>
+          <div className="flex space-x-6">
             <Link
               href="/privacy-policy" // Updated to common slug
               className="transition-colors duration-200 ease-out"

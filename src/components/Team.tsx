@@ -93,7 +93,7 @@ const teamMembers = [
   },
   {
     id: 5,
-    name: 'Rahul Kumar',
+    name: 'Rahul Kambale',
     role: 'Senior QA',
     image: '/images/rahul.jpeg',
     bio: 'Meticulous QA Lead dedicated to ensuring software quality, performance, and exceptional user experiences through comprehensive testing strategies and attention to detail.',
