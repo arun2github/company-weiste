@@ -46,28 +46,30 @@ const teamMembers = [
     image: '/images/Arun.jpg',
     bio: 'Full-stack developer with 4+ years of experience in building scalable and innovative applications.',
     social: {
-      linkedin: 'https://linkedin.com/in/arunkumar',
-      github: 'https://github.com/arunkumar',
-      instagram: 'https://instagram.com/arunkumar',
+      instagram: "https://www.instagram.com/infamous_fluky?igsh=MWQ4MTUzbjFibTM2MA==",
+      github: "https://github.com/arun2github",
+      linkedin: "https://www.linkedin.com/in/imarunjnv/",
       portfolio: 'https://aruntechfolio.netlify.app/'
     },
+     
+  
   },
   {
     id: 2,
     name: 'Anirudh Praveen',
     role: 'UI/UX Design ',
-    image: '/images/placeholder-avatar.svg',
+    image: '/images/anirudh.JPG',
     bio: 'Creative designer passionate about crafting beautiful, intuitive, and user-centered digital experiences.',
     social: {
-      linkedin: 'https://linkedin.com/in/anirudhpraveen',
-      github: 'https://github.com/anirudhpraveen',
+      linkedin: 'https://www.linkedin.com/in/apdes/',
+      github: '#',
       instagram: 'https://www.instagram.com/appy.1620?igsh=MTQwZDVvbG93dnhi',
       portfolio: '#'
     },
   },
   {
     id: 3,
-    name: 'Afroj Alam',
+    name: 'Afroj Satwilkar',
     role: 'Senior Backend Developer',
     image: '/images/afroj.jpeg',
     bio: 'Experienced backend developer specializing in Laravel, building robust and efficient server-side solutions.',
@@ -85,7 +87,7 @@ const teamMembers = [
     image: '/images/ashish.jpeg',
     bio: 'Strategic marketer with a knack for storytelling and driving brand growth in the digital landscape.',
     social: {
-      linkedin: 'https://linkedin.com/in/priyasharma',
+      linkedin: '#',
       github: '#',
       instagram: 'https://www.instagram.com/ashish_purushottamm?igsh=Mmp1dm9waGQwMDR3',
       portfolio: '#'
@@ -98,7 +100,7 @@ const teamMembers = [
     image: '/images/rahul.jpeg',
     bio: 'Meticulous QA Lead dedicated to ensuring software quality, performance, and exceptional user experiences through comprehensive testing strategies and attention to detail.',
     social: {
-      linkedin: 'https://linkedin.com/in/https://www.linkedin.com/in/rahul-kambale-136055162?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      linkedin: 'https://www.linkedin.com/in/rahul-kambale-136055162/',
       github: '#',
       instagram: 'https://www.instagram.com/rahul.k18?igsh=azljZms3MXJkc2hj',
       portfolio: '#'

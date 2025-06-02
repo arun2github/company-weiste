@@ -9,7 +9,7 @@ const BG_FOOTER = '#F0F0F0'; // Slightly darker than main BG for subtle separati
 const TEXT_PRIMARY_FOOTER = '#222222';
 const TEXT_SECONDARY_FOOTER = '#555555';
 const ACCENT_ELEGANT_FOOTER = '#004D40'; // Deep Teal
-const BORDER_FOOTER = '#D1D5DB'; // Light gray for border
+// const BORDER_FOOTER = '#D1D5DB'; // No longer needed as border is removed
 
 // --- Social Icon Components (Simplified for Footer) ---
 const LinkedInIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -26,7 +26,7 @@ const FacebookIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  // const currentYear = new Date().getFullYear(); // Removed as year is static now
 
   const navLinks = {
     company: [
@@ -58,16 +58,22 @@ const Footer = () => {
       style={{ backgroundColor: BG_FOOTER }} 
       className="text-sm"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8 md:gap-10 lg:gap-8 mb-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8 md:gap-10 lg:gap-8">
           {/* Brand Info */}
           <div className="col-span-2 text-center md:text-left md:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-block text-2xl tracking-tight mb-3 focus:outline-none" aria-label="WhaleCore Innovations Home">
               <span style={{ color: ACCENT_ELEGANT_FOOTER, fontWeight: '700' }} className="mr-1.5">WhaleCore</span>
               <span style={{ color: TEXT_PRIMARY_FOOTER, fontWeight: '400' }}>Innovations</span>
             </Link>
-            <p className="pr-4" style={{ color: TEXT_SECONDARY_FOOTER }}>
+            <p className="pr-4 text-sm" style={{ color: TEXT_SECONDARY_FOOTER }}>
             Transform Your Digital Vision,Into Reality. We build innovative solutions to elevate your brand.
+            </p>
+            <p style={{ color: TEXT_SECONDARY_FOOTER }} className="mt-4 text-xs">
+              © 2025 WhaleCore Innovations. All rights reserved.
+            </p>
+            <p style={{ color: TEXT_SECONDARY_FOOTER }} className="mt-1 text-xs">
+              Crafted with care by <a href="https://aruntechfolio.netlify.app/" target="_blank" rel="noopener noreferrer" className="hover:underline font-semibold" style={{color: ACCENT_ELEGANT_FOOTER}}>Arun Kumar</a>
             </p>
           </div>
 
@@ -146,41 +152,6 @@ const Footer = () => {
                 );
               })}
             </div>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div 
-          className="border-t pt-8 mt-8 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left"
-          style={{ borderColor: BORDER_FOOTER }}
-        >
-          <div className="mb-4 sm:mb-0">
-            <p style={{ color: TEXT_SECONDARY_FOOTER }} className="mb-1">
-              &copy; {currentYear} WhaleCore Innovations. All rights reserved.
-            </p>
-            <p style={{ color: TEXT_SECONDARY_FOOTER }}>
-              Crafted with care by <a href="https://aruntechfolio.netlify.app/" target="_blank" rel="noopener noreferrer" className="hover:underline font-semibold" style={{color: ACCENT_ELEGANT_FOOTER}}>Arun Kumar</a>
-            </p>
-          </div>
-          <div className="flex space-x-6">
-            <Link
-              href="/privacy-policy" // Updated to common slug
-              className="transition-colors duration-200 ease-out"
-              style={{ color: TEXT_SECONDARY_FOOTER }}
-              onMouseEnter={(e) => e.currentTarget.style.color = ACCENT_ELEGANT_FOOTER}
-              onMouseLeave={(e) => e.currentTarget.style.color = TEXT_SECONDARY_FOOTER}
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms-of-service" // Updated to common slug
-              className="transition-colors duration-200 ease-out"
-              style={{ color: TEXT_SECONDARY_FOOTER }}
-              onMouseEnter={(e) => e.currentTarget.style.color = ACCENT_ELEGANT_FOOTER}
-              onMouseLeave={(e) => e.currentTarget.style.color = TEXT_SECONDARY_FOOTER}
-            >
-              Terms of Service
-            </Link>
           </div>
         </div>
       </div>

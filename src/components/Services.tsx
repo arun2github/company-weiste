@@ -31,7 +31,7 @@ const services = [
     title: 'Mobile App Development',
     description: 'Building intuitive and engaging native or cross-platform mobile apps that deliver seamless user experiences on iOS and Android.',
     icon: DevicePhoneMobileIcon,
-    features: ['iOS (Swift/ObjC)', 'Android (Kotlin/Java)', 'Flutter/React Native', 'App Store Deployment'],
+    features: ['iOS (Flutter)', 'Android (Kotlin/Java/Flutter)', 'Flutter/React Native', 'App Store Deployment'],
   },
   {
     title: 'Digital Strategy & Marketing',

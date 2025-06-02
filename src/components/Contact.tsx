@@ -43,43 +43,44 @@ const ContactInfo = () => {
 
   return (
     <div 
-      className="flex flex-col justify-center h-full p-8 md:p-10 rounded-xl shadow-lg"
-      style={{ backgroundColor: CARD_BG_CONTACT }} // Changed to light card background
+      className="p-8 md:p-10 rounded-xl shadow-lg"
+      style={{ backgroundColor: CARD_BG_CONTACT }}
     >
       <h3 
-        className="text-2xl font-semibold mb-8 text-center lg:text-left"
-        style={{color: TEXT_PRIMARY_CONTACT }} // Standard dark text
+        className="text-2xl sm:text-3xl font-semibold mb-8 text-center"
+        style={{color: TEXT_PRIMARY_CONTACT }}
       >
-        Contact Information
+        Contact Information 
       </h3>
-      <div className="space-y-6 md:space-y-8">
+      <div className="md:flex md:flex-row md:justify-around md:items-start md:space-x-6 lg:space-x-8 space-y-8 md:space-y-0">
         {infoItems.map((item) => {
           const IconComponent = item.icon;
           return (
-            <div key={item.label} className="flex items-start">
+            <div key={item.label} className="text-center flex flex-col items-center flex-1 min-w-[180px]">
               <IconComponent 
-                className="w-7 h-7 mt-1 flex-shrink-0"
-                style={{color: ACCENT_ELEGANT_CONTACT}} // Icons now use accent color on light bg
+                className="w-8 h-8 sm:w-10 sm:h-10 mb-3"
+                style={{color: ACCENT_ELEGANT_CONTACT}}
               />
-              <div className="ml-4">
-                <p className="text-lg font-medium" style={{color: TEXT_PRIMARY_CONTACT}}>{item.label}</p> 
-                {item.href && item.href !== '#' ? (
-                  <a 
-                    href={item.href} 
-                    target="_blank" rel="noopener noreferrer"
-                    className="text-base transition-colors duration-200 ease-out hover:underline"
-                    style={{color: TEXT_SECONDARY_CONTACT}}
-                    onMouseEnter={(e) => e.currentTarget.style.color = ACCENT_ELEGANT_CONTACT}
-                    onMouseLeave={(e) => e.currentTarget.style.color = TEXT_SECONDARY_CONTACT}
-                  >
-                    {item.value.split('\\n').map((line, index) => (<span key={index} className="block">{line}</span>))}
-                  </a>
-                ) : (
-                  <p className="text-base" style={{color: TEXT_SECONDARY_CONTACT}}>
-                    {item.value.split('\\n').map((line, index) => (<span key={index} className="block">{line}</span>))}
-                  </p>
-                )}
-              </div>
+              {item.href && item.href !== '#' ? (
+                <a 
+                  href={item.href} 
+                  target="_blank" rel="noopener noreferrer"
+                  title={item.label}
+                  className="text-sm sm:text-base transition-colors duration-200 ease-out hover:underline break-all"
+                  style={{color: TEXT_SECONDARY_CONTACT}}
+                  onMouseEnter={(e) => e.currentTarget.style.color = ACCENT_ELEGANT_CONTACT}
+                  onMouseLeave={(e) => e.currentTarget.style.color = TEXT_SECONDARY_CONTACT}
+                >
+                  {item.value}
+                </a>
+              ) : (
+                <p 
+                  title={item.label}
+                  className="text-sm sm:text-base break-all" 
+                  style={{color: TEXT_SECONDARY_CONTACT}}>
+                  {item.value}
+                </p>
+              )}
             </div>
           );
         })}
@@ -152,11 +153,11 @@ const ContactForm = () => {
 
   return (
     <div 
-      className="h-full p-8 md:p-10 rounded-xl shadow-xl" // Slightly stronger shadow for form card
+      className="h-full p-8 md:p-10 rounded-xl shadow-xl" 
       style={{ backgroundColor: CARD_BG_CONTACT }} 
     >
       <h3 
-        className="text-2xl font-semibold mb-6 text-center lg:text-left" 
+        className="text-2xl sm:text-3xl font-semibold mb-6 text-center lg:text-left" 
         style={{color: TEXT_PRIMARY_CONTACT}}
       >
         Send Us a Message
@@ -260,12 +261,11 @@ const ContactForm = () => {
 const Contact = () => {
   return (
     <section id="contact" className="py-24 md:py-32" style={{backgroundColor: BG_PRIMARY_CONTACT}}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
+      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16 md:mb-20 max-w-3xl mx-auto">
           <motion.h2 
             className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-4"
-            style={{ color: TEXT_PRIMARY_CONTACT }} // Dark text on light page bg
+            style={{ color: TEXT_PRIMARY_CONTACT }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -275,7 +275,7 @@ const Contact = () => {
           </motion.h2>
           <motion.p 
             className="text-lg max-w-2xl mx-auto mt-4"
-            style={{ color: TEXT_SECONDARY_CONTACT }} // Dark text on light page bg
+            style={{ color: TEXT_SECONDARY_CONTACT }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -293,31 +293,25 @@ const Contact = () => {
           />
         </div>
 
-        {/* Main content area for elegant & accented panels */}
-        <div className="relative max-w-6xl mx-auto">
-          <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:items-center">
-            {/* Left Column: Contact Info Panel */}
-            <motion.div 
-              className="lg:col-span-4 xl:col-span-4 relative z-10 mb-8 lg:mb-0"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-            >
-              <ContactInfo />
-            </motion.div>
-            
-            {/* Right Column: Contact Form Card */}
-            <motion.div 
-              className="lg:col-span-8 xl:col-span-8"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.35 }}
-            >
-              <ContactForm />
-            </motion.div>
-          </div>
+        <div className="space-y-12 md:space-y-16">
+          <motion.div 
+            className="max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+          >
+            <ContactForm />
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.35 }}
+          >
+            <ContactInfo />
+          </motion.div>
         </div>
       </div>
     </section>
